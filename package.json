@@ -1,0 +1,40 @@
+{
+  "name": "nova-backened",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Real time backend for nova chat App",
+  "main": "./bin/www",
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sleez007/novaChatApi.git"
+  },
+  "keywords": [
+    "socket.io",
+    "Realtime",
+    "Express"
+  ],
+  "author": "Etoka Kingsley",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
+    "sequelize": "^5.21.8",
+    "socket.io": "^2.3.0",
+    "helmet": "^3.22.0",
+    "twilio": "^3.47.0",
+    "mongoose": "^5.9.14",
+    "jsonwebtoken": "^8.4.0"
+  }
+}

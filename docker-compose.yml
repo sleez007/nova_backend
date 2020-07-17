@@ -1,0 +1,29 @@
+version: "3.7"
+
+services: 
+  app:
+    image: node:12-alpine
+    command: sh -c "npm install && npm start"
+    ports:
+      - 3000:3000
+    working_dir:  /nova_backend
+    depends_on: 
+      - mongodb
+    volumes:
+      - ./:/nova_backend
+    environment: 
+      DB_CONN: "mongodb://mongodb/nova-chat"
+      TWILO_SECRET_ID : "AC66dd9527e2d12e5290fbc724ecf38362"
+      TWILO_TOKEN: "a236bcc5996558ceeaefe875b2247bf9"
+      FROM_PHONE: "+12019755413"
+      APP_NAME: "Nova Chat"
+  mongodb:
+    image: mongo:latest
+    ports:  
+      - 37017:27017
+    volumes: 
+      - data:/data/db
+    restart: always
+
+volumes: 
+  data:
