@@ -32,6 +32,14 @@ const userSchema = new Schema({
         type: String,
         default: null
     },
+    connected:{
+      type: Boolean, 
+      default: false
+    },
+    last_seen:{
+      type: Date,
+      default: Date.now
+    },
     blocking: [{
         userId: {
           type: String,
@@ -143,6 +151,6 @@ const userSchema = new Schema({
     }],
 
    
-},{timestamps:true, usePushEach: true})
+},{timestamps:true})
 
 module.exports =  mongoose.model('User', userSchema);

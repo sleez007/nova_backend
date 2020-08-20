@@ -2,147 +2,100 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema
 
-const userSchema = new Schema({
-    username: {
-        type: String,
-        default: null
-    },
-    telNo: {
-        unique: true,
-        default:null,
-        type: String
-    },
-    country: {
-        type: String,
-        default: null
-    },
-    image: {
-        type: String,
-        default: null
-    },
-    activated: {
-        type: Boolean,
-        default: false
-    },
-    auth_token: {
-        type: String,
-        default: null
-    },
-    verify_code: {
-        type: String,
-        default: null
-    },
-    blocking: [{
-        userId: {
-          type: String,
-          ref: 'users'
-        },
-        created: {
-          type: Date,
-          default: Date.now
-        }
+const chatSchema = new Schema({
+  users: [{
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  }],
+  groupId: {
+    type: Schema.Types.ObjectId,
+    ref: 'groups'
+  },
+  messages: [{
+    sent: [{
+      type: Schema.Types.ObjectId,
+      ref: 'users'
     }],
-    calls: [{
-        userId: {
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        },
-        users: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }],
-        created: {
-          type: Date,
-          default: Date.now
-        },
-        duration: {
-          type: String,
-          default: "0"
-        },
-        type: {
-          type: String,
-          default: null
-        },
-        deleted: {
-          type: Boolean,
-          default: false
-        },
-        sent: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }],
-        seen: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }]
+    delivered: [{
+      type: Schema.Types.ObjectId,
+      ref: 'users'
     }],
-    stories: [{
-        userId: {
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        },
-        users: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }],
-        created: {
-          type: Date,
-          default: Date.now
-        },
-        file: {
-          type: String,
-          default: null
-        },
-        body: {
-          type: String,
-          default: null
-        },
-        type: {
-          type: String,
-          default: null
-        },
-        duration: {
-          type: String,
-          default: "0"
-        },
-        deleted: {
-          type: Boolean,
-          default: false
-        },
-        sent: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }],
-        expired: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }],
-        seen: [{
-          type: Schema.Types.ObjectId,
-          ref: 'users'
-        }]
+    seen: [{
+      type: Schema.Types.ObjectId,
+      ref: 'users'
     }],
-    
-    status: [{
-        body: {
-          type: String,
-          default: null
-        },
-        userId: {
-          type: String,
-          ref: 'users'
-        },
-        current: {
-          type: Boolean,
-          default: false
-        },
-        created: {
-          type: Date,
-          default: Date.now
-        }
+    deleted: [{
+      type: Schema.Types.ObjectId,
+      ref: 'users'
     }],
+    state: {
+      type: String,
+      default: "normal"
+    },
+    sender: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
+    recipient: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
+    groupId: {
+      type: Schema.Types.ObjectId,
+      ref: 'groups'
+    },
+    reply_id: {
+      type: String,
+      default: null
+    },
+    reply_message: {
+      type: Boolean,
+      default: true
+    },
+    message: {
+      type: String,
+      default: null
+    },
+    longitude: {
+      type: String,
+      default: null
+    },
+    latitude: {
+      type: String,
+      default: null
+    },
+    file: {
+      type: String,
+      default: null
+    },
+    file_type: {
+      type: String,
+      default: null
+    },
+    file_size: {
+      type: String,
+      default: null
+    },
+    duration_file: {
+      type: String,
+      default: null
+    },
+    document_name: {
+      type: String,
+      default: null
+    },
+    document_type: {
+      type: String,
+      default: null
+    },
+    created: {
+      type: Date,
+      default: Date.now
+    }
+
+  }]
 
    
-},{timestamps:true, usePushEach: true})
+},{timestamps:true})
 
-module.exports =  mongoose.model('Users', userSchema);
+module.exports =  mongoose.model('Chat', chatSchema);

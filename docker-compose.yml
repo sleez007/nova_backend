@@ -17,6 +17,7 @@ services:
       TWILO_TOKEN: "a236bcc5996558ceeaefe875b2247bf9"
       FROM_PHONE: "+12019755413"
       APP_NAME: "Nova Chat"
+      APP_HASH: "5Lvw+95MbeI"
   mongodb:
     image: mongo:latest
     ports:  
